@@ -1,5 +1,5 @@
 <?php
-namespace Douyuxingchen\PhpLibraryStateless\HttpQuest;
+namespace Douyuxingchen\PhpLibraryStateless\Quest;
 
 use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponseInter;
 

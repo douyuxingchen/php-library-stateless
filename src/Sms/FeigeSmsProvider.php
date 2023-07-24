@@ -1,7 +1,7 @@
 <?php
-namespace Douyuxingchen\PhpLibraryStateless\ShortMessage;
+namespace Douyuxingchen\PhpLibraryStateless\Sms;
 
-use Douyuxingchen\PhpLibraryStateless\HttpQuest\Http;
+use Douyuxingchen\PhpLibraryStateless\Quest\Http;
 use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponse;
 use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponseInter;
 
@@ -47,8 +47,7 @@ class FeigeSmsProvider implements SmsProviderInterface
 
     private function request($url) : ThirdPartyResponseInter
     {
-        $http = new Http();
-        $apiRes = $http->setPost()
+        $apiRes = (new Http())->setPost()
             ->setUrl($url)
             ->setData($this->requestData)
             ->request();
