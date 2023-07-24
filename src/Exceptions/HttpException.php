@@ -1,8 +1,7 @@
 <?php
-
 namespace Douyuxingchen\PhpLibraryStateless\Exceptions;
 
-class HttpException
+class HttpException extends Exception
 {
 
 }

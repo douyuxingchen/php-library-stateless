@@ -1,5 +1,5 @@
 <?php
-namespace Douyuxingchen\PhpLibraryStateless\ShortMessage;
+namespace Douyuxingchen\PhpLibraryStateless\Sms;
 
 use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponseInter;
 

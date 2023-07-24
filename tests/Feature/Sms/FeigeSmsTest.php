@@ -1,9 +1,9 @@
 <?php
-namespace Tests\Feature\ShortMsg;
+namespace Tests\Feature\Sms;
 
 use Douyuxingchen\PhpLibraryStateless\Exceptions\Exception;
-use Douyuxingchen\PhpLibraryStateless\ShortMessage\FeigeSmsProvider;
-use Douyuxingchen\PhpLibraryStateless\ShortMessage\SmsBuilder;
+use Douyuxingchen\PhpLibraryStateless\Sms\FeigeSmsProvider;
+use Douyuxingchen\PhpLibraryStateless\Sms\SmsBuilder;
 use PHPUnit\Framework\TestCase;
 
 class FeigeSmsTest extends TestCase

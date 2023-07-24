@@ -1,8 +1,7 @@
 <?php
-
 namespace Douyuxingchen\PhpLibraryStateless\Exceptions;
 
-class ValidationException
+class ValidateException extends Exception
 {
 
 }
