@@ -11,8 +11,13 @@ class Http implements HttpInter
     /**
      * Method
      */
-    const GET = 'GET';
-    const POST = 'POST';
+    const GET       =   'GET';
+    const POST      =   'POST';
+    const PUT       =   'PUT';
+    const DELETE    =   'DELETE';
+    const HEAD      =   'HEAD';
+    const OPTIONS   =   'OPTIONS';
+    const PATCH     =   'PATCH';
 
     private $method = self::GET;
     private $url;
