@@ -9,10 +9,10 @@
 ```php
 $sms = (new SmsBuilder())->setProvider(new FeigeSmsProvider())
     ->setMobile('1234567890')
-    ->setSignId(123456)
+    ->setSignId(185283)
     ->setExtNo("666")
     ->setContent('点击此链接{link}领取{amount}元大礼包')
-    ->setParams(['link1' => 'https://www.baidu.com', 'amount' => '100'])
+    ->setParams(['link' => 'https://www.baidu.com', 'amount' => '100'])
     ->setSendTime()
     ->build();
 $res = $sms->send();
@@ -22,11 +22,20 @@ $res = $sms->send();
 ```php
 $sms = (new SmsBuilder())->setProvider(new FeigeSmsProvider())
     ->setMobile('1234567890')
-    ->setSignId(123456)
+    ->setSignId(185283)
     ->setExtNo("666")
-    ->setTemplateId('template_id_2')
+    ->setTemplateId('143874')
     ->setContent('大礼包|100|快速到达')
     ->setSendTime()
     ->build();
 $res = $sms->sendTemplate();
 ```
+
+## 腾讯
+
+### 发送普通短信
+```php
+
+```
+
+## 文档
