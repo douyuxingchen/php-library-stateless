@@ -2,7 +2,7 @@
 根据不同的短信服务商，不同的模版ID生成不同的短信模版参数
 
 ## 示例
-### 飞鸽
+### 飞鸽参数生成
 这里以飞鸽为例展示参数生成的过程
 ```php
 $res = (new ParamsBuilder())->setProvider(new FeigeParamsGen())
@@ -11,6 +11,12 @@ $res = (new ParamsBuilder())->setProvider(new FeigeParamsGen())
     ->build()
     ->genParams();
 ```
+
+验证飞鸽短信模版合法性
+```php
+FeigeParamsGen::validateTemplateKey('xxxxxx');
+```
+
 
 ## 文档  
 ### 参数生成逻辑

@@ -55,4 +55,15 @@ class FeigeParamsGen implements ParamsGenInterface
 
         return $data;
     }
+
+    /**
+     * 验证短信模版key是否合法
+     *
+     * @param string $templateKey
+     * @return bool
+     */
+    public static function validateTemplateKey(string $templateKey): bool
+    {
+        return array_key_exists($templateKey, FeigeParamsGen::KEY_CODE);
+    }
 }

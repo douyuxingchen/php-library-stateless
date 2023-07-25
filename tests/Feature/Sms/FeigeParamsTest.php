@@ -17,4 +17,16 @@ class FeigeParamsTest extends TestCase
         $this->assertEquals("https://www.baidu.com", $res);
     }
 
+    public function testFeigeParamsTrue()
+    {
+        $res = FeigeParamsGen::validateTemplateKey('feige_tpl2');
+        $this->assertTrue($res);
+    }
+
+    public function testFeigeParamsFalse()
+    {
+        $res = FeigeParamsGen::validateTemplateKey('test666');
+        $this->assertFalse($res);
+    }
+
 }
