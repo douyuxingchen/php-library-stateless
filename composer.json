@@ -1,6 +1,6 @@
 {
     "name": "douyuxingchen/php-library-stateless",
-    "description": "无状态的PHP库。通过本库，您可以轻松地管理项目中的不同服务，并确保它们在各种情况下都能保持正确的状态。",
+    "description": "无状态的PHP库。通过此SDK您可以轻松地管理项目中的不同服务，并确保它们在各种情况下都能保持正确的状态。",
     "type": "library",
     "license": "GPL-3.0-only",
     "autoload": {
