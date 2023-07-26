@@ -27,6 +27,12 @@ class FeigeSmsProvider implements SmsProviderInterface
         return $this;
     }
 
+    public function getRequest() : array
+    {
+        $request = $this->requestData;
+        unset($request['apikey'], $request['secret']);
+        return $request;
+    }
 
     public function getResponse()
     {

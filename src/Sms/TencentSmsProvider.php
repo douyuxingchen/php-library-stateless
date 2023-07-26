@@ -26,6 +26,16 @@ class TencentSmsProvider implements SmsProviderInterface
         return $this;
     }
 
+    public function getRequest() : array
+    {
+        return $this->requestData;
+    }
+
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
     public function send(): ThirdPartyResponseInter
     {
         return new ThirdPartyResponse(false, '未开发');
@@ -36,8 +46,5 @@ class TencentSmsProvider implements SmsProviderInterface
         return new ThirdPartyResponse(false, '未开发');
     }
 
-    public function getResponse()
-    {
-        return $this->response;
-    }
+
 }

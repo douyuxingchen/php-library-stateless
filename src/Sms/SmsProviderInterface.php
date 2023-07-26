@@ -37,6 +37,13 @@ interface SmsProviderInterface
     public function sendTemplate() : ThirdPartyResponseInter;
 
     /**
+     * 获取请求参数
+     *
+     * @return array
+     */
+    public function getRequest() : array;
+
+    /**
      * 获取响应参数
      *
      * @return mixed
