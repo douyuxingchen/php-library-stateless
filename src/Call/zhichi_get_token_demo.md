@@ -24,11 +24,24 @@ class XxxService
         }
 
         return Cache::store('redis')->remember(self::CACHE_KEY, self::CACHE_EXP, function () {
-            $res = (new ZhichiFactory())->getToken();
-            if (!$res->isStatus()) {
-                return false;
+            $response = (new Http())->setGet()->setUrl(Zhichi::API_URL . 'tokens')
+                ->setData([
+                    'apiKey' => env('ZHICHI_KEY'),
+                    'apiSecret' => env('ZHICHI_SECRET'),
+                ])
+                ->request();
+
+            if (!$response->isStatus()) {
+                throw new Exception('Failed to get API token');
             }
-            return $res->getData()['token'] ?? false;
+
+            $apiRes = $response->getData();
+
+            if (!isset($apiRes['code']) || $apiRes['code'] != Zhichi::API_SUCCESS_CODE) {
+                throw new Exception('API call failed');
+            }
+
+            return $apiRes['content']['accessToken'];
         });
     }
 }
