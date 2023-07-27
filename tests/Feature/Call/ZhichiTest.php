@@ -107,26 +107,13 @@ class ZhichiTest extends TestCase
         $this->assertEquals(200, $data['code']);
     }
 
-    private function getApiToken(): string
+    private function getApiToken()
     {
-        $response = (new Http())->setGet()->setUrl(Zhichi::API_URL . 'tokens')
-            ->setData([
-                'apiKey' => lib_env('ZHICHI_KEY'),
-                'apiSecret' => lib_env('ZHICHI_SECRET'),
-            ])
-            ->request();
-
-        if (!$response->isStatus()) {
-            throw new Exception('Failed to get API token');
+        $res = (new ZhichiFactory())->getToken(lib_env('ZHICHI_KEY'), lib_env('ZHICHI_SECRET'));
+        if (!$res->isStatus()) {
+            return false;
         }
-
-        $apiRes = $response->getData();
-
-        if (!isset($apiRes['code']) || $apiRes['code'] != Zhichi::API_SUCCESS_CODE) {
-            throw new ValidateException('API call failed');
-        }
-
-        return $apiRes['content']['accessToken'];
+        return $res->getData()['token'] ?? false;
     }
 
 }
