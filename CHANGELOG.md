@@ -14,5 +14,10 @@
 - 飞鸽短信模版的key合法验证
 - 短信发送类支持获取请求参数的方法
 
-##
+## v1.1.1
 - 智齿开发实时获取token的API
+- Composer.lock 使用 php7.3 锁定版本
+
+## v1.1.2
+- 开发Runtime的Exception
+- Composer.lock 使用 php7.2 锁定版本
