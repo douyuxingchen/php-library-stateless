@@ -13,10 +13,15 @@ class FeigeParamsGen implements ParamsGenInterface
     const KEY_YUN_CREATE_ORDER = "feige_tpl2";
     const CODE_YUN_CREATE_ORDER = "143874";
 
+    // 小小包R未进群外呼
+    const KEY_NOT_GROUP = "feige_tpl4";
+    const CODE_NOT_GROUP = "144524";
+
     // 模版key和code映射关系
     const KEY_CODE = [
         self::KEY_CREATE_ORDER => self::CODE_CREATE_ORDER,
         self::KEY_YUN_CREATE_ORDER => self::CODE_YUN_CREATE_ORDER,
+        self::KEY_NOT_GROUP => self::CODE_NOT_GROUP,
     ];
 
     private $params = [];
@@ -41,6 +46,7 @@ class FeigeParamsGen implements ParamsGenInterface
         switch ($this->templateCode){
             case FeigeParamsGen::CODE_CREATE_ORDER:
             case FeigeParamsGen::CODE_YUN_CREATE_ORDER:
+            case FeigeParamsGen::CODE_NOT_GROUP:
                 if(!isset($this->params['link'])) {
                     throw new ValidateException("not found param link");
                 }
