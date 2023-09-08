@@ -1,11 +1,7 @@
 <?php
-namespace Tests\Feature\Call;
+namespace Tests\Unit\Call;
 
-use Douyuxingchen\PhpLibraryStateless\Call\Zhichi;
 use Douyuxingchen\PhpLibraryStateless\Call\ZhichiFactory;
-use Douyuxingchen\PhpLibraryStateless\Exceptions\Exception;
-use Douyuxingchen\PhpLibraryStateless\Exceptions\ValidateException;
-use Douyuxingchen\PhpLibraryStateless\Quest\Http;
 use PHPUnit\Framework\TestCase;
 
 class ZhichiTest extends TestCase

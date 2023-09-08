@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\Sms;
+namespace Tests\Unit\Sms;
 
 use Douyuxingchen\PhpLibraryStateless\Sms\Params\FeigeParamsGen;
 use Douyuxingchen\PhpLibraryStateless\Sms\Params\ParamsBuilder;
