@@ -1,7 +1,6 @@
 <?php
-namespace Tests\Feature\Sms;
+namespace Tests\Unit\Sms;
 
-use Douyuxingchen\PhpLibraryStateless\Exceptions\Exception;
 use Douyuxingchen\PhpLibraryStateless\Sms\FeigeSmsProvider;
 use Douyuxingchen\PhpLibraryStateless\Sms\SmsBuilder;
 use PHPUnit\Framework\TestCase;
@@ -53,6 +52,36 @@ class FeigeSmsTest extends TestCase
         ]);
 
         $res = $sms->sendTemplate();
+
+        $this->assertEquals(true, $res->isStatus());
+    }
+
+    // 测试
+    // 模版短信 - T系列课程下单通知
+    public function testSendTempTClass()
+    {
+        $temp_code = '149272';
+
+        $sms = (new SmsBuilder())->setProvider(new FeigeSmsProvider())
+            ->setMobile('15711273395')
+            ->setSignId(185283)
+            ->setExtNo("666")
+            ->setTemplateId($temp_code)
+            ->setContent('T系列课程')
+            ->setSendTime()
+            ->build();
+
+        $sms->setEnv([
+            'apikey' => lib_env('FEIGE_APIKEY'),
+            'secret' => lib_env('FEIGE_SECRET'),
+        ]);
+
+        $res = $sms->sendTemplate();
+
+        if(!$res->isStatus()) {
+            var_dump($res->getMessage());
+            var_dump($res->getData());
+        }
 
         $this->assertEquals(true, $res->isStatus());
     }

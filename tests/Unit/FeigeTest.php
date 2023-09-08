@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Douyuxingchen\PhpLibraryStateless\FeigeSms\SmsBuilder;
 use PHPUnit\Framework\TestCase;
