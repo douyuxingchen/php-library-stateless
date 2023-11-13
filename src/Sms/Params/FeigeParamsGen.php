@@ -58,6 +58,7 @@ class FeigeParamsGen implements ParamsGenInterface
             case FeigeParamsGen::CODE_YUN_CREATE_ORDER:
             case FeigeParamsGen::CODE_NOT_GROUP:
             case FeigeParamsGen::CODE_T_CLASS:
+            case FeigeParamsGen::CODE_ACTIVE_MSG_ADD_YUN:
                 if(!isset($this->params['link'])) {
                     throw new ValidateException("not found param link");
                 }
