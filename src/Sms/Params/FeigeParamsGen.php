@@ -21,12 +21,17 @@ class FeigeParamsGen implements ParamsGenInterface
     const KEY_T_CLASS = 'feige_tpl5';
     const CODE_T_CLASS = '149272';
 
+    // 渠道推广活动通知加小云
+    const KEY_ACTIVE_MSG_ADD_YUN = 'feige_tpl6';
+    const CODE_ACTIVE_MSG_ADD_YUN = '153482';
+
     // 模版key和code映射关系
     const KEY_CODE = [
         self::KEY_CREATE_ORDER => self::CODE_CREATE_ORDER,
         self::KEY_YUN_CREATE_ORDER => self::CODE_YUN_CREATE_ORDER,
         self::KEY_NOT_GROUP => self::CODE_NOT_GROUP,
         self::KEY_T_CLASS => self::CODE_T_CLASS,
+        self::KEY_ACTIVE_MSG_ADD_YUN => self::CODE_ACTIVE_MSG_ADD_YUN,
     ];
 
     private $params = [];
