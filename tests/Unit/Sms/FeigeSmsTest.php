@@ -158,4 +158,42 @@ class FeigeSmsTest extends TestCase
         $this->assertEquals(true, $res->isStatus());
     }
 
+    // 测试
+    // 模版短信 - 考书大课报名Z50系列报名通知
+    // ./vendor/bin/phpunit --filter testActiveMsgBookZ50 ./tests/Unit/Sms/FeigeSmsTest.php
+    public function testActiveMsgBookZ50()
+    {
+        $smsTemplateKey = FeigeParamsGen::KEY_BOOK_Z50;
+
+        $content = (new ParamsBuilder())->setProvider(new FeigeParamsGen())
+                ->setParams([
+                    'link' =>  null,
+                ])->setTempCode(FeigeParamsGen::KEY_CODE[$smsTemplateKey])
+                ->build()
+                ->genParams();
+
+        $sms = (new SmsBuilder())->setProvider(new FeigeSmsProvider())
+            ->setMobile('15711273395')
+            ->setSignId(185283)
+            ->setExtNo("666")
+            ->setTemplateId(FeigeParamsGen::KEY_CODE[$smsTemplateKey])
+            ->setContent($content)
+            ->setSendTime()
+            ->build();
+
+        $sms->setEnv([
+            'apikey' => lib_env('FEIGE_APIKEY'),
+            'secret' => lib_env('FEIGE_SECRET'),
+        ]);
+
+        $res = $sms->sendTemplate();
+
+        if(!$res->isStatus()) {
+            var_dump($res->getMessage());
+            var_dump($res->getData());
+        }
+
+        $this->assertEquals(true, $res->isStatus());
+    }
+
 }

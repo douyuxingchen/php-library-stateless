@@ -24,8 +24,14 @@ class FeigeParamsGen implements ParamsGenInterface
     // 渠道推广活动通知加小云
     const KEY_ACTIVE_MSG_ADD_YUN = 'feige_tpl6';
     const CODE_ACTIVE_MSG_ADD_YUN = '153482';
+
+    // 听力熊渠道推广活动通知加小云
     const KEY_TLX_ACTIVE_MSG_ADD_YUN = 'feige_tpl7';
     const CODE_TLX_ACTIVE_MSG_ADD_YUN = '156046';
+
+    // 考书大课报名Z50系列报名通知
+    const KEY_BOOK_Z50 = 'feige_tpl8';
+    const CODE_BOOK_Z50 = '157670';
 
     // 模版key和code映射关系
     const KEY_CODE = [
@@ -35,6 +41,7 @@ class FeigeParamsGen implements ParamsGenInterface
         self::KEY_T_CLASS => self::CODE_T_CLASS,
         self::KEY_ACTIVE_MSG_ADD_YUN => self::CODE_ACTIVE_MSG_ADD_YUN,
         self::KEY_TLX_ACTIVE_MSG_ADD_YUN => self::CODE_TLX_ACTIVE_MSG_ADD_YUN,
+        self::KEY_BOOK_Z50 => self::CODE_BOOK_Z50,
     ];
 
     private $params = [];
@@ -56,7 +63,9 @@ class FeigeParamsGen implements ParamsGenInterface
      * @throws ValidateException
      */
     public function genParams() {
+        $data = '';
         switch ($this->templateCode){
+            // 需要link参数的code
             case FeigeParamsGen::CODE_CREATE_ORDER:
             case FeigeParamsGen::CODE_YUN_CREATE_ORDER:
             case FeigeParamsGen::CODE_NOT_GROUP:
@@ -71,8 +80,11 @@ class FeigeParamsGen implements ParamsGenInterface
                 ];
                 $data = implode('|', $data);
                 break;
+            // 不需要任何参数的code
+            case FeigeParamsGen::CODE_BOOK_Z50:
+                break;
             default:
-                return [];
+                return '';
         }
 
         return $data;
