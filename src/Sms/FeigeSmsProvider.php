@@ -51,27 +51,27 @@ class FeigeSmsProvider implements SmsProviderInterface
         return $this->request($url);
     }
 
-    private function request($url) : ThirdPartyResponseInter
+    private function request(string $url) : ThirdPartyResponseInter
     {
-        $apiRes = (new Http())->setPost()
-            ->setUrl($url)
-            ->setData($this->requestData)
-            ->request();
-        if(!$apiRes->isStatus()) {
-            return $apiRes;
+        for ($i=0; $i<3; $i++) {
+            $apiRes = (new Http())->setPost()
+                ->setUrl($url)
+                ->setData($this->requestData)
+                ->request();
+            if(!$apiRes->isStatus()) {
+                continue;
+            }
+
+            $this->response = $apiRes->getData();
+            return ThirdPartyResponse::create($this->response['code'] == 0,$this->response['msg'] ?? null)
+                ->setRequestId($this->response['msg_no'] ?? null)
+                ->setData($this->response);
         }
 
-        $this->response = $apiRes->getData();
-
-        if (empty($this->response)) {
-            return ThirdPartyResponse::create(false, '调用飞鸽api失败')->setData([
-                'req' => $this->requestData,
-                'res' => $this->response
-            ]);
-        }
-
-        return ThirdPartyResponse::create($this->response['code'] == 0,$this->response['msg'] ?? null)
-            ->setRequestId($this->response['msg_no'] ?? null)
-            ->setData($this->response);
+        return ThirdPartyResponse::create(false, '调用飞鸽api失败')->setData([
+            'api_url' => $this->apiUrl,
+            'req' => $this->requestData,
+            'res' => $this->response,
+        ]);
     }
 }

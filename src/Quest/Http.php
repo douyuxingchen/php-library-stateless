@@ -3,6 +3,7 @@ namespace Douyuxingchen\PhpLibraryStateless\Quest;
 
 use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponse;
 use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponseInter;
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -70,39 +71,49 @@ class Http implements HttpInter
      */
     public function request() : ThirdPartyResponseInter
     {
-        $client = new Client([
-            'base_uri' => $this->url,
-            'timeout'  => $this->timeout,
-        ]);
+        try {
+            $client = new Client([
+                'base_uri' => $this->url,
+                'timeout'  => $this->timeout,
+            ]);
 
-        $options = ['headers' => $this->headers];
+            $options = ['headers' => $this->headers];
 
-        switch ($this->method) {
-            case self::GET:
-                $options['query'] = $this->data;
-                break;
-            case self::POST:
-                if ($this->dataType === 'json') {
-                    $options['json'] = $this->data;
-                } else {
-                    $options['form_params'] = $this->data;
-                }
-                break;
-        }
+            switch ($this->method) {
+                case self::GET:
+                    $options['query'] = $this->data;
+                    break;
+                case self::POST:
+                    if ($this->dataType === 'json') {
+                        $options['json'] = $this->data;
+                    } else {
+                        $options['form_params'] = $this->data;
+                    }
+                    break;
+            }
 
+            $response = $client->request($this->method, '', $options);
+            $code = $response->getStatusCode();
+            if($code != 200) {
+                return ThirdPartyResponse::create(false, "HttpRequestFailed")->setData([
+                    'http_code' => $code,
+                    'client' => $client,
+                    'response' => $response
+                ]);
+            }
 
-        $response = $client->request($this->method, '', $options);
-        $code = $response->getStatusCode();
-        if($code != 200) {
-            return ThirdPartyResponse::create(false, "http client request failed")->setData([
-                'http_code' => $code,
-                'client' => $client,
-                'response' => $response
+            return ThirdPartyResponse::create(true, 'HttpRequestSuccess')
+                ->setData(json_decode((string)$response->getBody(), true));
+
+        } catch (GuzzleException|Exception $e) {
+            return ThirdPartyResponse::create(false, 'HttpRequestException: '. $e->getMessage())->setData([
+                'message' => $e->getMessage(),
+                'code' => $e->getCode(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTrace(),
             ]);
         }
-
-        return ThirdPartyResponse::create(true, "http request success")
-            ->setData(json_decode((string)$response->getBody(), true));
     }
 
 }
