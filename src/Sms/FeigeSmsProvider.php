@@ -59,6 +59,7 @@ class FeigeSmsProvider implements SmsProviderInterface
                 ->setData($this->requestData)
                 ->request();
             if(!$apiRes->isStatus()) {
+                sleep(1);
                 continue;
             }
 
