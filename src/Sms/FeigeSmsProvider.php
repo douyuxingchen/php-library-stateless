@@ -7,7 +7,8 @@ use Douyuxingchen\PhpLibraryStateless\Response\ThirdPartyResponseInter;
 
 class FeigeSmsProvider implements SmsProviderInterface
 {
-    private $apiUrl = "https://api.4321.sh/";
+    //private $apiUrl = "https://api.4321.sh/"; // 该链接总是出现间歇性的ssl的错误
+    private $apiUrl = "https://vip.4321.sh/";
     private $requestData;
     private $response;
 
