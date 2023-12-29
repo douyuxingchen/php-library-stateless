@@ -39,6 +39,12 @@ class Http implements HttpInter
         return $this;
     }
 
+    function setTimeout(int $timeout) : HttpInter
+    {
+        $this->timeout = $timeout;
+        return $this;
+    }
+
     function setUrl(string $url) : HttpInter
     {
         $this->url = $url;
