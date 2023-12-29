@@ -33,6 +33,15 @@ class FeigeParamsGen implements ParamsGenInterface
     const KEY_BOOK_Z50 = 'feige_tpl8';
     const CODE_BOOK_Z50 = '157670';
 
+
+    // 渠道推广活动通知加小云2.0
+    const KEY_ACTIVE_MSG_ADD_YUN2 = 'feige_tpl10';
+    const CODE_ACTIVE_MSG_ADD_YUN2 = '160912';
+
+    // 听力熊渠道推广活动通知加小云2.0
+    const KEY_TLX_ACTIVE_MSG_ADD_YUN2 = 'feige_tpl11';
+    const CODE_TLX_ACTIVE_MSG_ADD_YUN2 = '160915';
+
     // 模版key和code映射关系
     const KEY_CODE = [
         self::KEY_CREATE_ORDER => self::CODE_CREATE_ORDER,
@@ -40,7 +49,9 @@ class FeigeParamsGen implements ParamsGenInterface
         self::KEY_NOT_GROUP => self::CODE_NOT_GROUP,
         self::KEY_T_CLASS => self::CODE_T_CLASS,
         self::KEY_ACTIVE_MSG_ADD_YUN => self::CODE_ACTIVE_MSG_ADD_YUN,
+        self::KEY_ACTIVE_MSG_ADD_YUN2 => self::CODE_ACTIVE_MSG_ADD_YUN2,
         self::KEY_TLX_ACTIVE_MSG_ADD_YUN => self::CODE_TLX_ACTIVE_MSG_ADD_YUN,
+        self::KEY_TLX_ACTIVE_MSG_ADD_YUN2 => self::CODE_TLX_ACTIVE_MSG_ADD_YUN2,
         self::KEY_BOOK_Z50 => self::CODE_BOOK_Z50,
     ];
 
