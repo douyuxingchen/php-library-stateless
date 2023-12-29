@@ -20,6 +20,14 @@ interface HttpInter {
     function setPost() : HttpInter;
 
     /**
+     * [可选] 设置超时时间（单位：秒）
+     *
+     * @param int $timeout
+     * @return HttpInter
+     */
+    function setTimeout(int $timeout) : HttpInter;
+
+    /**
      * [必须] 请求URL地址
      *
      * @param string $url

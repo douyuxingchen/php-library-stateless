@@ -55,12 +55,14 @@ class FeigeSmsProvider implements SmsProviderInterface
     private function request(string $url) : ThirdPartyResponseInter
     {
         for ($i=0; $i<3; $i++) {
-            $apiRes = (new Http())->setPost()
+            $apiRes = (new Http())
+                ->setPost()
+                ->setTimeout(8)
                 ->setUrl($url)
                 ->setData($this->requestData)
                 ->request();
             if(!$apiRes->isStatus()) {
-                sleep(1);
+                sleep(3);
                 continue;
             }
 
