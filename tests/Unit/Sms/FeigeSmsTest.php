@@ -196,4 +196,41 @@ class FeigeSmsTest extends TestCase
         $this->assertEquals(true, $res->isStatus());
     }
 
+    // 测试 爆单后通知加小云
+    // ./vendor/bin/phpunit --filter testExplosiveOrderMsgAddYun ./tests/Unit/Sms/FeigeSmsTest.php
+    public function testExplosiveOrderMsgAddYun()
+    {
+        $smsTemplateKey = FeigeParamsGen::KEY_EXPLOSIVE_ORDER_MSG_ADD_YUN;
+
+        $content = (new ParamsBuilder())->setProvider(new FeigeParamsGen())
+                ->setParams([
+                    'link' =>  'test666',
+                ])->setTempCode(FeigeParamsGen::KEY_CODE[$smsTemplateKey])
+                ->build()
+                ->genParams();
+
+        $sms = (new SmsBuilder())->setProvider(new FeigeSmsProvider())
+            ->setMobile('15711273395')
+            ->setSignId(185283)
+            ->setExtNo("666")
+            ->setTemplateId(FeigeParamsGen::KEY_CODE[$smsTemplateKey])
+            ->setContent($content)
+            ->setSendTime()
+            ->build();
+
+        $sms->setEnv([
+            'apikey' => lib_env('FEIGE_APIKEY'),
+            'secret' => lib_env('FEIGE_SECRET'),
+        ]);
+
+        $res = $sms->sendTemplate();
+
+        if(!$res->isStatus()) {
+            var_dump($res->getMessage());
+            var_dump($res->getData());
+        }
+
+        $this->assertEquals(true, $res->isStatus());
+    }
+
 }
