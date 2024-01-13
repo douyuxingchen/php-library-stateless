@@ -42,6 +42,10 @@ class FeigeParamsGen implements ParamsGenInterface
     const KEY_TLX_ACTIVE_MSG_ADD_YUN2 = 'feige_tpl11';
     const CODE_TLX_ACTIVE_MSG_ADD_YUN2 = '160915';
 
+    // 爆单后通知加小云
+    const KEY_EXPLOSIVE_ORDER_MSG_ADD_YUN = 'feige_tpl12';
+    const CODE_EXPLOSIVE_ORDER_MSG_ADD_YUN = '162892';
+
     // 模版key和code映射关系
     const KEY_CODE = [
         self::KEY_CREATE_ORDER => self::CODE_CREATE_ORDER,
@@ -53,6 +57,7 @@ class FeigeParamsGen implements ParamsGenInterface
         self::KEY_TLX_ACTIVE_MSG_ADD_YUN => self::CODE_TLX_ACTIVE_MSG_ADD_YUN,
         self::KEY_TLX_ACTIVE_MSG_ADD_YUN2 => self::CODE_TLX_ACTIVE_MSG_ADD_YUN2,
         self::KEY_BOOK_Z50 => self::CODE_BOOK_Z50,
+        self::KEY_EXPLOSIVE_ORDER_MSG_ADD_YUN => self::CODE_EXPLOSIVE_ORDER_MSG_ADD_YUN,
     ];
 
     private $params = [];
@@ -83,6 +88,7 @@ class FeigeParamsGen implements ParamsGenInterface
             case FeigeParamsGen::CODE_T_CLASS:
             case FeigeParamsGen::CODE_ACTIVE_MSG_ADD_YUN:
             case FeigeParamsGen::CODE_TLX_ACTIVE_MSG_ADD_YUN:
+            case FeigeParamsGen::CODE_EXPLOSIVE_ORDER_MSG_ADD_YUN:
                 if(!isset($this->params['link'])) {
                     throw new ValidateException("not found param link");
                 }
