@@ -78,9 +78,12 @@ class SmsBuilder {
         return $this;
     }
 
-    public function setSendTime(): SmsBuilder
+    public function setSendTime($timestamp = null): SmsBuilder
     {
-        $this->requestData['send_time'] = time();
+        if(is_null($timestamp)) {
+            $timestamp = time();
+        }
+        $this->requestData['send_time'] = $timestamp;
         return $this;
     }
 
