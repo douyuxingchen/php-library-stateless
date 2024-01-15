@@ -33,7 +33,6 @@ class FeigeParamsGen implements ParamsGenInterface
     const KEY_BOOK_Z50 = 'feige_tpl8';
     const CODE_BOOK_Z50 = '157670';
 
-
     // 渠道推广活动通知加小云2.0
     const KEY_ACTIVE_MSG_ADD_YUN2 = 'feige_tpl10';
     const CODE_ACTIVE_MSG_ADD_YUN2 = '160912';
@@ -79,7 +78,6 @@ class FeigeParamsGen implements ParamsGenInterface
      * @throws ValidateException
      */
     public function genParams() {
-        $data = '';
         switch ($this->templateCode){
             // 需要link参数的code
             case FeigeParamsGen::CODE_CREATE_ORDER:
@@ -95,16 +93,19 @@ class FeigeParamsGen implements ParamsGenInterface
                 $data = [
                     'link' => $this->params['link'],
                 ];
-                $data = implode('|', $data);
-                break;
+                return implode('|', $data);
             // 不需要任何参数的code
             case FeigeParamsGen::CODE_BOOK_Z50:
-                break;
+                return '';
             default:
+                if(is_array($this->params)) {
+                    return implode('|', $this->params);
+                }
+                if(is_string($this->params)) {
+                    return $this->params;
+                }
                 return '';
         }
-
-        return $data;
     }
 
     /**
