@@ -93,13 +93,13 @@ class FeigeParamsGen implements ParamsGenInterface
                 $data = [
                     'link' => $this->params['link'],
                 ];
-                return implode('|', $data);
+                return implode('||', $data);
             // 不需要任何参数的code
             case FeigeParamsGen::CODE_BOOK_Z50:
                 return '';
             default:
                 if(is_array($this->params)) {
-                    return implode('|', $this->params);
+                    return implode('||', $this->params);
                 }
                 if(is_string($this->params)) {
                     return $this->params;
